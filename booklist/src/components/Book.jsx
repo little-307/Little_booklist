@@ -1,15 +1,16 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-function Book() {
+function Book({book}) {
+        console.log(book.response)
     return (
         <div>
             <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                    <Card.Title>To Kill A Mockingbird</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Harper Lee</Card.Subtitle>
-                    <Card.Text>
-                    Boo, Scout, and Gregory play in a tree house and I believe the court gets involved.
+                    <Card.Title>{book.response.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{book.response.author}</Card.Subtitle>
+                    <Card.Text >
+                    {book.response.synopsis}
                     </Card.Text>
                 </Card.Body>
             </Card>
