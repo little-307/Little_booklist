@@ -3,8 +3,8 @@ import { getBooks, createBook } from '../controllers/books.js';
 
 const router = express.Router();
 
-router.get('/get', getBooks);
+router.get('/', getBooks);
 
-router.post('/post', createBook);
+router.post('/', createBook);
 
 export default router;

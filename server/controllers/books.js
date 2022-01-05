@@ -17,13 +17,13 @@ export const getBooks = async (req, res) => {
 export const createBook = async (req, res) => {
     const post = req.body;
 
-    const newBooks = new Books({ ...post, createdAT: new Date().toISOString() });
+    const newBooks = new Books({ ...post });
 
     try {
         await newBooks.save();
 
         res.status(201).json(newBooks);
     } catch (e) {
-        res.status(409).json({ book: e });
+        res.status(409).json({ message: e });
     }
 }
