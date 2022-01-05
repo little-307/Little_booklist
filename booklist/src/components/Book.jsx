@@ -1,19 +1,25 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { selectContent } from '../state/bookSlice';
 
-function Book({book}) {
-        console.log(book.response)
+function Book() {
+        
+    const book = useSelector(selectContent)
+    console.log(book)
     return (
         <div>
-            <Card style={{ width: '18rem' }}>
+            {book.map((info, i) => (
+            <Card style={{ width: '18rem' }} key={i}>
                 <Card.Body>
-                    <Card.Title>{book.response.title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{book.response.author}</Card.Subtitle>
+                    <Card.Title>{info.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{info.author}</Card.Subtitle>
                     <Card.Text >
-                    {book.response.synopsis}
+                    {info.synopsis}
                     </Card.Text>
                 </Card.Body>
             </Card>
+            ))}
         </div>
     )
 }

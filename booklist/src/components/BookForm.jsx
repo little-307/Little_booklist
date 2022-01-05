@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import { Form, Button } from 'react-bootstrap';
-import Book from './Book';
+import { useDispatch } from 'react-redux';
+import { contentReducer } from '../state/bookSlice';
 
-function BookForm({setBook}) {
+function BookForm() {
+    const dispatch = useDispatch();
     
     const [response, setResponse] = useState()
 
@@ -11,18 +13,20 @@ function BookForm({setBook}) {
             ...response,
             [e.target.name]: e.target.value
         })
-        console.log(response)
+        
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // let updateContentArr = [
-        //     ...content, response];
-    setBook({response})
-    //         if (response.title) {
-    //             dispatch(addContent(updateContentArr))
-    //             setResponse({}) // empty the field after submit.
-    //         }
+     
+            if (response.title) {
+                dispatch(contentReducer(response))
+                setResponse({}) // empty the field after submit.
+                
+            }
+            e.target.title.value = ""
+            e.target.author.value = ""
+            e.target.synopsis.value = ""
     }
 
     return (
